@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: opentelemetry-instrumentation-litellm
+  version: "0.1.0"
+  python_min: "3.10"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/opentelemetry_instrumentation_litellm-${{ version }}.tar.gz
+  sha256: 2e2b9c2b8995711d8a5bc7f4636bf6da2a88680d15e006685bba22b4e9cfe174
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - hatchling
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - opentelemetry-api >=1.38.0,<2.0.0
+    - opentelemetry-instrumentation >=0.59b0
+    - opentelemetry-semantic-conventions >=0.63b1
+    - opentelemetry-semantic-conventions-ai >=0.5.1,<0.6.0
+  run_constraints:
+    - litellm >=1.0.0
+
+tests:
+  - python:
+      imports:
+        - opentelemetry.instrumentation.litellm
+      pip_check: true
+      python_version:
+        - ${{ python_min }}
+        - "*"
+
+about:
+  summary: OpenTelemetry LiteLLM instrumentation
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://www.traceloop.com/openllmetry
+  repository: https://github.com/traceloop/openllmetry
+  documentation: https://www.traceloop.com/docs/openllmetry/introduction
+
+extra:
+  recipe-maintainers:
+    - timkpaine
