@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: opentelemetry-instrumentation-litellm
-  version: "0.62.4"
+  version: "0.63.0"
   python_min: "3.10"
 
 package:
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/opentelemetry_instrumentation_litellm-${{ version }}.tar.gz
-  sha256: 01afd3ffc36cf1fe09723a2b2aaaeec0ce6be33fcf9b54af8c0229d3e92973d7
+  sha256: 63090780e76be58e99aa1a69a02c8db549bed6f00554cee220a7d90ac0da423c
 
 build:
   number: 0
